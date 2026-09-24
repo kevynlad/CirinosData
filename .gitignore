@@ -1,0 +1,4 @@
+# Brutos do TSE (dezenas/centenas de MB, acima do limite do GitHub) — ficam só locais.
+# Baixar via navegador em dadosabertos.tse.jus.br (a API bloqueia robôs).
+data/tse/raw/
+*.zip
