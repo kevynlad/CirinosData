@@ -79,7 +79,15 @@ Views de apoio por capital (JOIN com `ibge.municipios` pelo nome). Correções j
 
 `dim_municipio` (9), `dim_genero`, `dim_raca_cor`, `dim_escolaridade`, `dim_cargo`, `dim_partido`, `fato_eleitorado` (852), `fato_eleitos` (285). Recarrega com `EXEC dw.sp_carga_dw;` (limpa e reinsere fatos).
 
-## Pipeline de carga (ordem)
+## Como obter o banco (2 caminhos)
+
+**A. Banco pronto — `db/CirinosData.bacpac` (82 KB, schema + dados):**
+- Pelo SSMS: botão direito em *Databases → Import Data-tier Application…* e aponte o `.bacpac`.
+- Por linha de comando (SqlPackage instalado):
+  `sqlpackage /Action:Import /TargetServerName:".\SQLEXPRESS" /TargetDatabaseName:"CirinosData" /SourceFile:"db\CirinosData.bacpac" /TargetTrustServerCertificate:True`
+- Validado: import de teste retornou 4.444 candidatos e KPI1 9/9.
+
+**B. Rebuild via scripts (qualquer versão do SQL Server):**
 
 ```powershell
 sqlcmd -S ".\SQLEXPRESS" -E -C -f 65001 -i CirinosData_TSE_NE.sql
